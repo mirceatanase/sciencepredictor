@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Science predictor</title>
+
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Main CSS-->
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-dark p-t-100 p-b-50">
+        <div class="wrapper wrapper--w900">
+            <div class="card card-6">
+                <div class="card-heading">
+                    <h2 class="title">Help us train our model! </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="name"> The analyzed text </div>
+                        <div class="value">
+                            <div>
+                                {{data}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"> Please provide the correct scientific area for the text </div>
+                        <div class="value">
+                            <button class = "btn btn--radius-2 btn--blue-2" onclick="window.location.href = '/mispredict1';" {{disabled_dict['Geography'] }}>
+                                Geography &nbsp;&nbsp;&nbsp;&nbsp;
+                            </button>
+                            <br>
+                            <br>
+                            <button class = "btn btn--radius-2 btn--blue-2" onclick="window.location.href = '/mispredict2';" {{disabled_dict['Mathematics'] }}>
+                                Mathematics</button>
+                            <br>
+                            <br>
+                            <button class = "btn btn--radius-2 btn--blue-2" onclick="window.location.href = '/mispredict3';" {{disabled_dict['Informatics'] }}> 
+                                Informatics: &nbsp;&nbsp;&nbsp;&nbsp; 
+                            </button>
+                            <br>
+                            <br>
+                            <button class = "btn btn--radius-2 btn--blue-2" onclick="window.location.href = '/mispredict4';" {{disabled_dict['Biology'] }}>
+                                Biology: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </button>
+                            <br>
+                            <br>
+                            <button class = "btn btn--radius-2 btn--blue-2" onclick="window.location.href = '/mispredict5';" {{disabled_dict['English'] }}>
+                                English:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    Copyright Big Data 2019, Robert Samoilescu, Tanase Mircea, UPB
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->
