@@ -36,29 +36,29 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="name"> Please provide the correct scientific area for the text </div>
+                        <div class="name"> Please provide the correct scientific area of the text <br> (Red is what our classifier predicted)</div>
                         <div class="value">
-                            <button class = "btn btn--radius-2 btn--blue-2" onclick="window.location.href = '/mispredict1';" {{disabled_dict['Geography'] }}>
-                                Geography &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class = "btn btn--radius-2 btn--{{disabled_dict['geography'] }}" onclick="window.location.href = '/mispredict2';" >
+                                Geography &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
                             </button>
                             <br>
                             <br>
-                            <button class = "btn btn--radius-2 btn--blue-2" onclick="window.location.href = '/mispredict2';" {{disabled_dict['Mathematics'] }}>
-                                Mathematics</button>
+                            <button class = "btn btn--radius-2 btn--{{disabled_dict['mathematics'] }}" onclick="window.location.href = '/mispredict0';" >
+                                Mathematics &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; </button>
                             <br>
                             <br>
-                            <button class = "btn btn--radius-2 btn--blue-2" onclick="window.location.href = '/mispredict3';" {{disabled_dict['Informatics'] }}> 
-                                Informatics: &nbsp;&nbsp;&nbsp;&nbsp; 
+                            <button class = "btn btn--radius-2 btn--{{disabled_dict['computer science'] }}" onclick="window.location.href = '/mispredict4';" > 
+                                Computer Science &nbsp;&nbsp;&nbsp;&nbsp; 
                             </button>
                             <br>
                             <br>
-                            <button class = "btn btn--radius-2 btn--blue-2" onclick="window.location.href = '/mispredict4';" {{disabled_dict['Biology'] }}>
-                                Biology: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class = "btn btn--radius-2 btn--{{disabled_dict['biology'] }}" onclick="window.location.href = '/mispredict1';" >
+                                Biology &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
                             </button>
                             <br>
                             <br>
-                            <button class = "btn btn--radius-2 btn--blue-2" onclick="window.location.href = '/mispredict5';" {{disabled_dict['English'] }}>
-                                English:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class = "btn btn--radius-2 btn--{{disabled_dict['history'] }}" onclick="window.location.href = '/mispredict3';" >
+                                History &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
                             </button>
                         </div>
                     </div>

@@ -3,6 +3,11 @@ from app import app
 from app.forms import PredictForm
 import os
 
+from use_clf import *
+clf = load_model()
+classes = ("mathematics", "biology", "geography", "history", "computer science")
+
+
 ALLOWED_EXTENSIONS = set(['txt'])
 
 def allowed_file(filename):
@@ -52,10 +57,13 @@ def detect():
         for line in f.readlines():
             text = text + line
 
+        content = [text]
+        result = clf.predict(content)
+        print('Result: ', result)    
     with open('res.txt', 'w') as f:
-        f.write('Goegraphy')
+        f.write(classes[result[0]])
 
-    results = {'area': 'Geography', 'Informatics': 0.1, 'Mathematics':0.15, 'Geography': 0.39, 'Biology': 0.01, 'English': 0.35}
+    results = {'area': classes[result[0]].upper()}
     return render_template('detect.html', results=results, data=text)
 
 @app.route('/mispredict', methods=['GET', 'POST'])
@@ -70,42 +78,44 @@ def mispredict():
         prediction = f.readlines()[0]
 
     disabled_dict = {
-        'Geography' :'',
-        'Informatics': '',
-        'Mathemathics': '',
-        'Biology': '',
-        'English': ''
+        'geography' : 'blue-2',
+        'computer science': 'blue-2',
+        'mathematics': 'blue-2',
+        'biology': 'blue-2',
+        'history': 'blue-2'
     }
 
-    disabled_dict[prediction] = 'disabled'
+    disabled_dict[prediction] = 'red'
+
+    print(disabled_dict)
 
     return render_template('mispredict.html', data=text, disabled_dict=disabled_dict)
 
-@app.route('/mispredict1', methods=['GET', 'POST'])
+@app.route('/mispredict0', methods=['GET', 'POST'])
 def mispredict1():
     # The text is in 'tmp.txt', the prediction is in 'res.txt'
     # And the class selected by the user is 1
     return redirect('/index')
 
-@app.route('/mispredict2', methods=['GET', 'POST'])
+@app.route('/mispredict1', methods=['GET', 'POST'])
 def mispredict2():
     # The text is in 'tmp.txt', the prediction is in 'res.txt'
     # And the class selected by the user is 2
     return redirect('/index')
 
-@app.route('/mispredict3', methods=['GET', 'POST'])
+@app.route('/mispredict2', methods=['GET', 'POST'])
 def mispredict3():
     # The text is in 'tmp.txt', the prediction is in 'res.txt'
     # And the class selected by the user is 3
     return redirect('/index')
 
-@app.route('/mispredict4', methods=['GET', 'POST'])
+@app.route('/mispredict3', methods=['GET', 'POST'])
 def mispredict4():
     # The text is in 'tmp.txt', the prediction is in 'res.txt'
     # And the class selected by the user is 4
     return redirect('/index')
 
-@app.route('/mispredict5', methods=['GET', 'POST'])
+@app.route('/mispredict4', methods=['GET', 'POST'])
 def mispredict5():
     # The text is in 'tmp.txt', the prediction is in 'res.txt'
     # And the class selected by the user is 5
