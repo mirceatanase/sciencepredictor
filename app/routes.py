@@ -7,6 +7,12 @@ from use_clf import *
 clf = load_model()
 classes = ("mathematics", "biology", "geography", "history", "computer science")
 
+from datetime import datetime
+from elasticsearch import Elasticsearch
+es = Elasticsearch()
+
+
+import uuid
 
 ALLOWED_EXTENSIONS = set(['txt'])
 
@@ -14,7 +20,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     pred_form = PredictForm()
@@ -94,29 +100,134 @@ def mispredict():
 @app.route('/mispredict0', methods=['GET', 'POST'])
 def mispredict1():
     # The text is in 'tmp.txt', the prediction is in 'res.txt'
-    # And the class selected by the user is 1
+    # And the class selected by the user is 0
+    with open('tmp.txt', 'r') as f:
+        text = ''
+        for line in f.readlines():
+            text = text + line
+   
+    with open('res.txt', 'r') as f:
+        prediction = f.readlines()[0]    
+
+    doc = {
+        'text': text,
+        'label': prediction,
+        'real_label': 'mathematics',
+        'timestamp': datetime.now(),
+    }
+
+    strid = str(uuid.uuid1())
+    res = es.index(index="misclassified", doc_type='tweet', id=strid, body=doc)
+    #print(res['result'])
+
+    res = es.get(index="misclassified", doc_type='tweet', id=1)
+    print(res['_source'])
+
     return redirect('/index')
 
 @app.route('/mispredict1', methods=['GET', 'POST'])
 def mispredict2():
     # The text is in 'tmp.txt', the prediction is in 'res.txt'
-    # And the class selected by the user is 2
+    # And the class selected by the user is 1
+    with open('tmp.txt', 'r') as f:
+        text = ''
+        for line in f.readlines():
+            text = text + line
+   
+    with open('res.txt', 'r') as f:
+        prediction = f.readlines()[0]    
+
+    doc = {
+        'text': text,
+        'label': prediction,
+        'real_label': 'biology',
+        'timestamp': datetime.now(),
+    }
+
+    res = es.index(index="misclassified", doc_type='tweet', id=1, body=doc)
+
+    res = es.get(index="misclassified", doc_type='tweet', id=1)
+    print(res['_source'])
+
     return redirect('/index')
 
 @app.route('/mispredict2', methods=['GET', 'POST'])
 def mispredict3():
     # The text is in 'tmp.txt', the prediction is in 'res.txt'
-    # And the class selected by the user is 3
+    # And the class selected by the user is 2
+    with open('tmp.txt', 'r') as f:
+        text = ''
+        for line in f.readlines():
+            text = text + line
+   
+    with open('res.txt', 'r') as f:
+        prediction = f.readlines()[0]    
+
+    doc = {
+        'text': text,
+        'label': prediction,
+        'real_label': 'geography',
+        'timestamp': datetime.now(),
+    }
+
+    res = es.index(index="misclassified", doc_type='tweet', id=1, body=doc)
+
+    res = es.get(index="misclassified", doc_type='tweet', id=1)
+    print(res['_source'])
+
     return redirect('/index')
 
 @app.route('/mispredict3', methods=['GET', 'POST'])
 def mispredict4():
     # The text is in 'tmp.txt', the prediction is in 'res.txt'
-    # And the class selected by the user is 4
+    # And the class selected by the user is 3
+    with open('tmp.txt', 'r') as f:
+        text = ''
+        for line in f.readlines():
+            text = text + line
+   
+    with open('res.txt', 'r') as f:
+        prediction = f.readlines()[0]    
+
+    doc = {
+        'text': text,
+        'label': prediction,
+        'real_label': 'history',
+        'timestamp': datetime.now(),
+    }
+
+    res = es.index(index="misclassified", doc_type='tweet', id=1, body=doc)
+    #print(res['result'])
+
+    res = es.get(index="misclassified", doc_type='tweet', id=1)
+    print(res['_source'])
+
     return redirect('/index')
 
 @app.route('/mispredict4', methods=['GET', 'POST'])
 def mispredict5():
     # The text is in 'tmp.txt', the prediction is in 'res.txt'
-    # And the class selected by the user is 5
+    # And the class selected by the user is 4
+    with open('tmp.txt', 'r') as f:
+        text = ''
+        for line in f.readlines():
+            text = text + line
+   
+    with open('res.txt', 'r') as f:
+        prediction = f.readlines()[0]    
+
+    doc = {
+        'text': text,
+        'label': prediction,
+        'real_label': 'computer science',
+        'timestamp': datetime.now(),
+    }
+
+    res = es.index(index="misclassified", doc_type='tweet', id=1, body=doc)
+    print(res)
+
+    res = es.get(index="misclassified", doc_type='tweet', id=1)
+    print(res['_source'])
+
     return redirect('/index')
+
